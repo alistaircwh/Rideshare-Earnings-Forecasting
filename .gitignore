@@ -1,0 +1,6 @@
+
+*.parquet
+data/NYC hourly weather 2023-05-01 to 2024-05-01.csv
+data/.DS_Store
+data/fhvhv_data/.DS_Store
+.DS_Store
