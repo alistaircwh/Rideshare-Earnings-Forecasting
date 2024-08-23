@@ -37,7 +37,7 @@ for month in MONTHS:
     url = f'{URL_TEMPLATE}{YEAR}-{month}.parquet'
 
     # Generate output location and filename
-    output_dir = f"{tlc_output_dir}/{YEAR}-{month}.newparquet"
+    output_dir = f"{tlc_output_dir}/{YEAR}-{month}.parquet"
    
     # Download
     urlretrieve(url, output_dir) 
