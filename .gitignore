@@ -6,3 +6,5 @@ data/raw/2023-07.parquet
 data/raw/2023-08.parquet
 data/raw/2023-09.parquet
 data/raw/2023-10.parquet
+/data/curated
+/data/raw

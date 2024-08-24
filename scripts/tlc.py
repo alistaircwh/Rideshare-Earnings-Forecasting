@@ -16,11 +16,11 @@ target_dir = 'raw'
 if not os.path.exists(output_relative_dir + target_dir):
     os.makedirs(output_relative_dir + target_dir)
 
-# Define the year desired
-YEAR = '2023'
+# Define the years desired
+YEARS = ['2023', '2024']
 
 # MONTHS = range(1, 13)
-MONTHS = range(5, 11)
+MONTHS = [range(5, 13), range(1, 6)]
 
 # State the URL to retrieve
 URL_TEMPLATE = "https://d37ci6vzurychx.cloudfront.net/trip-data/fhvhv_tripdata_"
@@ -28,18 +28,25 @@ URL_TEMPLATE = "https://d37ci6vzurychx.cloudfront.net/trip-data/fhvhv_tripdata_"
 # data output directory is `data/tlc_data/`
 tlc_output_dir = output_relative_dir + target_dir
 
-for month in MONTHS:
-    # 0-fill i.e 1 -> 01, 2 -> 02, etc
-    month = str(month).zfill(2) 
-    print(f"Begin month {month}")
+for year in YEARS:
 
-    # Generate urls
-    url = f'{URL_TEMPLATE}{YEAR}-{month}.parquet'
+    if year == '2023':
+        month_index = 0
+    else:
+        month_index = 1
 
-    # Generate output location and filename
-    output_dir = f"{tlc_output_dir}/{YEAR}-{month}.parquet"
-   
-    # Download
-    urlretrieve(url, output_dir) 
+    for month in MONTHS[month_index]:
+        # 0-fill i.e 1 -> 01, 2 -> 02, etc
+        month = str(month).zfill(2) 
+        print(f"Begin month {month}")
+
+        # Generate urls
+        url = f'{URL_TEMPLATE}{year}-{month}.parquet'
+
+        # Generate output location and filename
+        output_dir = f"{tlc_output_dir}/{year}-{month}.parquet"
     
-    print(f"Completed month {month}")
+        # Download
+        urlretrieve(url, output_dir) 
+        
+        print(f"Completed month {month}")
