@@ -17,10 +17,10 @@ if not os.path.exists(output_relative_dir + target_dir):
     os.makedirs(output_relative_dir + target_dir)
 
 # Define the years desired
-YEARS = ['2023', '2024']
+YEARS = ['2023']
 
 # MONTHS = range(1, 13)
-MONTHS = [range(5, 13), range(1, 6)]
+MONTHS = [range(5, 12), range(1, 1)]
 
 # State the URL to retrieve
 URL_TEMPLATE = "https://d37ci6vzurychx.cloudfront.net/trip-data/fhvhv_tripdata_"

@@ -8,3 +8,6 @@ data/raw/2023-09.parquet
 data/raw/2023-10.parquet
 /data/curated
 /data/raw
+data/raw_csv/taxi_zone_lookup.csv
+data/raw_csv/taxi_zones/taxi_zones.dbf
+/data/raw_csv/taxi_zones
