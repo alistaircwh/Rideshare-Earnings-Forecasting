@@ -3,17 +3,7 @@
 - Name: `ALISTAIR CHEAH WERN HAO`
 - Student ID: `1342747`
 
-## Student Instructions
-You **must** write up `README.md` for this repository to be eligable for readability marks.
-
-5. All plots must be saved in the `plots` directory.
-6. Finally, your report `.tex` files must be inside the `report` directory. If you are using overleaf, you can download the `.zip` and extract it into this folder.
-8. Add your relevant `requirements.txt` to the root directory. If you are unsure, run `pip3 list --format=freeze > requirements.txt` (or alternative) and copy the output to the repository.
-
-## README example
-This is an example `README.md` for students to use. **Please change this to your requirements**.
-
-**Research Goal:** Predict earnings per hour (assuming driver is always on a trip)
+**Research Goal:** Predict earnings for rideshares in NYC
 
 **Timeline:** 2023 May start to 2023 November end
 

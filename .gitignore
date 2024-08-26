@@ -11,3 +11,4 @@ data/raw/2023-10.parquet
 data/raw_csv/taxi_zone_lookup.csv
 data/raw_csv/taxi_zones/taxi_zones.dbf
 /data/raw_csv/taxi_zones
+/data/curated_before

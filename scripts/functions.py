@@ -38,15 +38,18 @@ def get_dataset_shape(df):
 from math import sqrt, log
 from pyspark.sql.functions import col
 
-def apply_iqr_rule(df, column, N):
+def apply_iqr_rule(df, column):
 
-    """Takes in a dataset, specific column and dataset size
+    """Takes in a dataset and specific column name
     returns the dataset after filtering that column using the IQR rule for N>100"""
 
     # Find quantiles of the column
     quantiles = df.approxQuantile(column, [0.25, 0.75], 0.01)
     Q1, Q3 = quantiles
     IQR = Q3 - Q1
+
+    # Calculate N
+    N = df.count()
 
     # Define IQR rule
     threshold = (sqrt(log(N)) - 0.5) * IQR
