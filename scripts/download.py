@@ -1,52 +1,39 @@
-from urllib.request import urlretrieve
+"""
+Download NYC TLC For-Hire Vehicle High-Volume (FHVHV) trip data.
+
+Downloads monthly Parquet files from the NYC TLC public dataset for the
+months configured in DOWNLOAD_MONTHS. Output files are saved to data/raw/.
+
+Usage:
+    python scripts/download.py
+"""
 
 import os
+from urllib.request import urlretrieve
+from urllib.error import URLError
 
-# From the current directory, go back to the Project 1 directory
-output_relative_dir = './data/'
+# Output directory for raw Parquet files
+RAW_DATA_DIR = "./data/raw"
 
-# Check if it exists
-# makedir will raise an error if it does exist
-if not os.path.exists(output_relative_dir):
-    os.makedirs(output_relative_dir)
-    
-# Create the path for the tlc_data
-target_dir = 'raw'
-    
-if not os.path.exists(output_relative_dir + target_dir):
-    os.makedirs(output_relative_dir + target_dir)
-
-# Define the years desired
-YEARS = ['2023']
-
-# MONTHS = range(1, 13)
-MONTHS = [range(5, 12), range(1, 1)]
-
-# State the URL to retrieve
+# NYC TLC public dataset base URL
 URL_TEMPLATE = "https://d37ci6vzurychx.cloudfront.net/trip-data/fhvhv_tripdata_"
 
-# data output directory is `data/tlc_data/`
-tlc_output_dir = output_relative_dir + target_dir
+# Months to download (May–October 2023 for training; November is the test holdout)
+DOWNLOAD_MONTHS = {
+    "2023": range(5, 11),
+}
 
-for year in YEARS:
+os.makedirs(RAW_DATA_DIR, exist_ok=True)
 
-    if year == '2023':
-        month_index = 0
-    else:
-        month_index = 1
+for year, months in DOWNLOAD_MONTHS.items():
+    for month in months:
+        month_str = str(month).zfill(2)
+        url = f"{URL_TEMPLATE}{year}-{month_str}.parquet"
+        output_path = os.path.join(RAW_DATA_DIR, f"{year}-{month_str}.parquet")
 
-    for month in MONTHS[month_index]:
-        # 0-fill i.e 1 -> 01, 2 -> 02, etc
-        month = str(month).zfill(2) 
-        print(f"Begin month {month}")
-
-        # Generate urls
-        url = f'{URL_TEMPLATE}{year}-{month}.parquet'
-
-        # Generate output location and filename
-        output_dir = f"{tlc_output_dir}/{year}-{month}.parquet"
-    
-        # Download
-        urlretrieve(url, output_dir) 
-        
-        print(f"Completed month {month}")
+        print(f"Downloading {year}-{month_str} ...")
+        try:
+            urlretrieve(url, output_path)
+            print(f"  Saved to {output_path}")
+        except URLError as e:
+            print(f"  ERROR: Could not download {url} — {e}")

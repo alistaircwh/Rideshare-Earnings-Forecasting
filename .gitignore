@@ -1,15 +1,15 @@
 
 
-data/raw/2023-05.parquet
-data/raw/2023-06.parquet
-data/raw/2023-07.parquet
-data/raw/2023-08.parquet
-data/raw/2023-09.parquet
-data/raw/2023-10.parquet
-/data/curated
-/data/raw
-data/raw_csv/taxi_zone_lookup.csv
-data/raw_csv/taxi_zones/taxi_zones.dbf
-/data/raw_csv/taxi_zones
-/data/curated_before
+# Data (large files not tracked)
 data/
+
+# macOS metadata
+.DS_Store
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
